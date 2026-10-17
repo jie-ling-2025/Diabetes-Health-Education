@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="專為民眾與家屬設計的糖尿病互動衛教指南。認識三多一少與低血糖警訊、掌握 15-15 急救法則、血糖監測、飲食與足部照護。">
+  <title>穩糖日常・安心生活｜糖尿病照護衛教互動指南</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <link rel="stylesheet" href="styles.css">
+  <noscript><link rel="stylesheet" href="nojs.css"></noscript>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <!-- 1. 無障礙跳頁錨點 -->
+  <a class="skip" href="#main">跳到主要內容</a>
+
+  <!-- 2. 頂部低血糖急救警訊橫幅 -->
+  <div class="urgent-banner">
+    <span class="pulse" aria-hidden="true"></span>
+    <span>意識不清、抽搐或無法安全吞嚥？<strong>不要餵水或食物，立即打 119，依救護人員指示處理！</strong></span>
+    <a href="tel:119" aria-label="撥打 119 緊急求救電話">撥打 119 ↗</a>
+  </div>
+
+  <!-- 3. 頁首導覽與控制區 -->
+  <header class="site-header">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">✳</span>
+      <span>穩糖安心指南<small>DIABETES CARE GUIDE</small></span>
+    </a>
+    <nav id="navigation" aria-label="主要導覽">
+      <a href="#recognize">常見警訊</a>
+      <a href="#emergency">低血糖急救</a>
+      <a href="#journey">控糖三部曲</a>
+      <a href="#care">日常照護</a>
+      <a href="#quiz">情境測驗</a>
+    </nav>
+    <div class="header-actions">
+      <button id="font-toggle" type="button" aria-pressed="false" aria-label="切換大字級模式">大字 A<span>＋</span></button>
+      <button id="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation" aria-label="開啟導覽選單">☰</button>
+    </div>
+    <div class="reading-track"><div id="reading-progress"></div></div>
+  </header>
+
+  <main id="main">
+    <!-- 4. Hero 主視覺與手動主題切換 -->
+    <section id="top" class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> 給你，也給你在乎的家人</div>
+        <p class="hero-kicker">糖尿病全方位互動衛教指南</p>
+        <h1>穩糖每一步，<br>擁抱<span class="underline">安心自在好生活。</span></h1>
+        <p id="hero-description" class="hero-description">
+          從認識血糖開始，把照顧自己融入日常，<br class="desktop-break">
+          和醫療團隊一起，找到適合自己的生活步調。
+        </p>
+        <div class="hero-buttons">
+          <a class="button primary" href="#recognize">認識常見警訊 <span>↗</span></a>
+          <a class="text-link" href="#quiz">我想試試情境測驗 →</a>
+        </div>
+        <div class="hero-foot"><span class="mini-cross">＋</span> 簡單白話・科學飲食・安心陪伴・不蒐集個資</div>
+      </div>
+
+      <div class="hero-art">
+        <div class="art-top-label"><span class="little-sun">☀</span> 溫暖相伴・穩糖每一天</div>
+        <!-- 原創溫暖 SVG 示意插畫 -->
+        <svg class="hero-scene" viewBox="0 0 540 420" role="img" aria-labelledby="scene-title scene-desc">
+          <title id="scene-title">健康餐盤與活力相伴插圖</title>
+          <desc id="scene-desc">溫暖的居家餐桌場景，擺放均衡的蔬菜、全穀與健康飲水，搭配血糖機的日常照護示意，數字僅為插畫範例。</desc>
+          <defs>
+            <radialGradient id="table-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#fff4e0"/>
+              <stop offset="100%" stop-color="#ebd8b4"/>
+            </radialGradient>
+          </defs>
+          <!-- 背景光暈與餐桌 -->
+          <ellipse cx="270" cy="310" rx="230" ry="85" fill="url(#table-glow)"/>
+          <path d="M70 320 Q270 370 470 320" stroke="#d5be94" stroke-width="6" fill="none"/>
+          
+          <!-- 健康餐盤展示 (1/2 蔬菜, 1/4 蛋白質, 1/4 全穀) -->
+          <circle cx="270" cy="240" r="105" fill="#ffffff" stroke="#c8b48f" stroke-width="7"/>
+          <circle cx="270" cy="240" r="88" fill="#fdfbf7"/>
+          <!-- 蔬菜半盤 -->
+          <path d="M270 152 A88 88 0 0 1 270 328 Z" fill="#6d8a63" opacity="0.85"/>
+          <!-- 全穀 1/4 -->
+          <path d="M270 152 A88 88 0 0 0 182 240 H270 Z" fill="#d99b66" opacity="0.85"/>
+          <!-- 蛋白質 1/4 -->
+          <path d="M182 240 A88 88 0 0 0 270 328 V240 Z" fill="#758ea0" opacity="0.85"/>
+
+          <!-- 血糖機象徵與貼心量測 -->
+          <rect x="75" y="190" width="60" height="95" rx="12" fill="#ffffff" stroke="#526b4d" stroke-width="4"/>
+          <rect x="85" y="205" width="40" height="35" rx="4" fill="#eef4ec"/>
+          <text x="105" y="228" font-size="14" font-weight="bold" fill="#3e6b52" text-anchor="middle">108</text>
+          <path d="M105 250 v24" stroke="#c48762" stroke-width="3"/>
+          <circle cx="105" cy="275" r="4" fill="#c48762"/>
+
+          <!-- 溫水杯象徵多喝水 -->
+          <path d="M410 185 L425 270 Q435 285 450 270 L465 185 Z" fill="#ffffff" stroke="#8fa89b" stroke-width="4"/>
+          <path d="M418 215 Q437 225 457 215" stroke="#a4c2b2" stroke-width="3" fill="none"/>
+
+          <!-- 裝飾小愛心 -->
+          <circle cx="270" cy="100" r="28" fill="#ffffff" stroke="#c48762" stroke-width="3"/>
+          <text x="270" y="108" font-size="20" fill="#c48762" text-anchor="middle">♡</text>
+        </svg>
+        <div class="art-note">
+          <span class="note-symbol">♡</span>
+          <div><strong>定時監測・安心享食</strong><small>規律生活，搭配醫囑照護</small></div>
+        </div>
+      </div>
+
+      <div class="hero-pagination">
+        <div class="slide-controls">
+          <button id="slide-prev" aria-label="上一個主題">←</button>
+          <span id="slide-counter">01 / 03</span>
+          <button id="slide-next" aria-label="下一個主題">→</button>
+        </div>
+        <div class="slide-dots" aria-label="選擇首頁主題">
+          <button class="active" aria-label="主題 1：認識警訊" aria-pressed="true" data-slide="0"></button>
+          <button aria-label="主題 2：低血糖急救" aria-pressed="false" data-slide="1"></button>
+          <button aria-label="主題 3：日常照護" aria-pressed="false" data-slide="2"></button>
+        </div>
+        <span class="scroll-hint">往下探索控糖要點 ↓</span>
+      </div>
+    </section>
+
+    <!-- 章節快速導覽 -->
+    <div class="chapter-wrap">
+      <nav class="chapters" aria-label="衛教主題分章">
+        <a href="#recognize"><span>01</span> 常見警訊 ↗</a>
+        <a href="#emergency"><span>02</span> 低血糖急救 ↗</a>
+        <a href="#journey"><span>03</span> 控糖三部曲 ↗</a>
+        <a href="#care"><span>04</span> 日常照護 ↗</a>
+        <a href="#quiz"><span>05</span> 情境練習 ↗</a>
+      </nav>
+    </div>
+
+    <!-- 5. 警訊識別：三多一少與低血糖 -->
+    <section id="recognize" class="section container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 / RECOGNIZE SYMPTOMS</p>
+          <h2>學會傾聽身體的信號，<br>及早發現高低血糖警訊。</h2>
+        </div>
+        <p>血糖過高或過低都會造成身體不適，<br>認識身體在發出的求救信號。<br><a class="source-inline" href="#references">衛教來源 01・02・05 ↗</a></p>
+      </div>
+
+      <div class="card-grid">
+        <article class="info-card">
+          <div class="card-badge">高血糖特徵</div>
+          <h3>「三多一少」警訊</h3>
+          <p><strong>多吃、多喝、多尿</strong>，但體重卻<strong>無故減輕</strong>。常伴隨容易疲倦、視線偶發模糊、傷口不易癒合。</p>
+          <span class="card-caption">也可能沒有明顯症狀；診斷須經醫療檢查</span>
+        </article>
+
+        <article class="info-card warning-card">
+          <div class="card-badge badge-warn">急性注意</div>
+          <h3>低血糖初期信號</h3>
+          <p>血糖低於 70 mg/dL。突然感到<strong>心悸、手抖、冒冷汗、強烈飢餓感、頭暈、發抖</strong>或注意力無法集中。</p>
+          <span class="card-caption">先確認清醒、能安全吞嚥，再依下方步驟處理</span>
+        </article>
+
+        <article class="info-card">
+          <div class="card-badge">併發症信號</div>
+          <h3>末梢循環與傷口</h3>
+          <p>雙腳常常有<strong>麻木感、刺痛如蟻爬、感覺遲鈍</strong>；小傷口癒合速度明顯變慢，甚至容易發炎紅腫。</p>
+          <span class="card-caption">不可輕忽，需落實每日足部檢查</span>
+        </article>
+
+        <article class="info-card urgent-card">
+          <div class="card-badge badge-urgent">重度危急</div>
+          <h3>意識改變・抽搐</h3>
+          <p>若低血糖未及時處理，可能導致<strong>意識混亂、嗜睡甚至昏迷、抽搐</strong>。切勿灌水餵食！</p>
+          <a href="tel:119" class="call-link">立即撥打 119 求救 ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- 6. 低血糖急救 15-15 原則 -->
+    <section id="emergency" class="action-section">
+      <div class="container action-layout">
+        <div class="action-intro">
+          <p class="eyebrow">02 / EMERGENCY ACTION</p>
+          <h2>低血糖來襲，<br>謹記「15-15 原則」。</h2>
+          <p>
+            清醒且能安全吞嚥時才口服補糖，<br>
+            意識不清絕對不可灌食！
+          </p>
+          <a class="button emergency" href="tel:119">緊急狀況立即打 119 <span>↗</span></a>
+          <a class="source-inline" href="#references">衛教來源 02・06 ↗</a>
+        </div>
+
+        <div class="action-steps">
+          <article>
+            <span class="step-number">1</span>
+            <div>
+              <h3>清醒、能吞嚥：補充 15 公克速效糖</h3>
+              <p>優先使用葡萄糖錠或凝膠，依包裝換算約 <strong>15 公克葡萄糖</strong>；也可使用含糖飲料，按營養標示換算份量（不可用無糖飲料）。巧克力的脂肪會延緩吸收。服用延緩醣類消化藥物者，應使用葡萄糖並事先與藥師確認。</p>
+            </div>
+          </article>
+
+          <article>
+            <span class="step-number">2</span>
+            <div>
+              <h3>靜坐休息 15 分鐘並複測</h3>
+              <p>停止活動，15 分鐘後複測；仍低於 70 mg/dL 時，再補糖 15 公克並於 15 分鐘後再測，直到回到個人目標。若症狀未改善、惡化或無法自行處理，立即求助。恢復後若距下餐超過 1 小時，可補充點心並聯絡醫療團隊討論原因。</p>
+            </div>
+          </article>
+
+          <article>
+            <span class="step-number">3</span>
+            <div>
+              <h3>若意識混亂昏迷：勿灌食，速打 119</h3>
+              <p><strong>絕對禁止強行將水或糖水灌入嘴中</strong>，這極可能造成嗆入氣管導致吸入性肺炎甚至窒息！立即打 119，依救護人員指示處理。若有醫師開立的升糖素且受過訓練，可依指示使用；無正常呼吸時依 119 指導急救。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <aside class="container high-alert"><h3>高血糖也可能是急症</h3><p>持續嘔吐、喝不下水、呼吸困難或呼吸深快、呼氣有水果味、意識改變時，立即就醫；嚴重或無法安全前往急診時打 <a href="tel:119">119</a>。不必等所有症狀都出現，也不要只憑一個血糖數字排除急症。<a href="#references">來源 06</a></p></aside>
+    <!-- 7. 控糖三部曲分頁 (Tabs) -->
+    <section id="journey" class="section container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">03 / CONTROL STEPS</p>
+          <h2>控糖三部曲：<br>監測、飲食與用藥正確認知</h2>
+        </div>
+        <p>依循科學方法與醫護指導，穩健管理日常數值。<br><a class="source-inline" href="#references">衛教來源 03・07 ↗</a></p>
+      </div>
+
+      <div class="types-note"><h3>先認識類型，照護才有方向</h3><p><strong>第 1 型：</strong>胰島素分泌極少或不足，需要每天使用胰島素。<strong>第 2 型：</strong>胰島素作用不佳或分泌不足，依個別情況安排生活調整與藥物。<strong>妊娠糖尿病：</strong>在懷孕期間發生，需產科與糖尿病團隊共同照護、產後追蹤。本頁日常建議以一般成人為主，兒童、孕婦、腎病與衰弱長者須個別調整。<a href="#references">來源 05</a></p></div>
+      <div class="treatment-tabs" role="tablist" aria-label="控糖流程">
+        <button id="tab-monitor" role="tab" aria-controls="panel-monitor" aria-selected="true" tabindex="0">01 血糖監測與目標</button>
+        <button id="tab-diet" role="tab" aria-controls="panel-diet" aria-selected="false" tabindex="-1">02 我的健康餐盤</button>
+        <button id="tab-meds" role="tab" aria-controls="panel-meds" aria-selected="false" tabindex="-1">03 用藥與胰島素迷思</button>
+      </div>
+
+      <div id="panel-monitor" class="treatment-panel" role="tabpanel" aria-labelledby="tab-monitor" tabindex="0">
+        <div class="panel-header">
+          <span class="tag">數值指引</span>
+          <h3>和醫療團隊訂下自己的目標</h3></div><div class="panel-content"><ul class="target-list"><li><strong>糖化血色素（HbA1c）</strong>反映一段時間的血糖狀況，與居家單次量測用途不同。</li><li><strong>量測時機、頻率與目標</strong>依年齡、用藥、懷孕及低血糖風險調整；回診帶上紀錄和問題。</li><li><strong>觀察數值也留意身體</strong>：有嚴重不適不要為了等待測量而延誤求助。</li></ul><p class="panel-tip">下次回診可以問：「我的血糖目標是多少？什麼情況需要聯絡你們？」</p></div></div>
+      <div id="panel-diet" class="treatment-panel" role="tabpanel" aria-labelledby="tab-diet" tabindex="0" hidden><span class="tag">飲食原則</span><h3>均衡飲食，先從規律與份量開始</h3><ul class="target-list"><li>每天均衡攝取六大類食物，選擇原型食物與高纖食材。</li><li>全穀雜糧、水果、乳品也含醣，需注意份量，不因控糖完全不吃澱粉。</li><li>少油、少鹽、少糖；日常飲品以白開水或無糖飲品為主。</li></ul><p class="panel-tip">主視覺餐盤僅為食物種類示意，不是個人飲食處方。份量請與營養師討論。</p></div>
+      <div id="panel-meds" class="treatment-panel" role="tabpanel" aria-labelledby="tab-meds" tabindex="0" hidden>
+        <div class="panel-header">
+          <span class="tag">醫療常識</span>
+          <h3>依醫囑用藥，有疑問就和團隊討論</h3>
+        </div>
+        <div class="panel-content">
+          <ul class="target-list">
+            <li><strong>口服降糖藥</strong>：務必遵照醫囑在飯前、隨餐或飯後服用，不可自行加量、減量或忘記吃就下次吃兩倍。</li>
+            <li><strong>胰島素是治療選項之一</strong>：是否需要使用由醫師評估；不要因擔心用藥而自行停藥。長期血糖控制不佳會增加腎臟等併發症風險。</li>
+            <li><strong>出門隨身必備</strong>：隨身攜帶葡萄糖急救用品、糖尿病識別資訊及所需藥物，安心出門無負擔。</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small-note">以上為一般衛教參考標準，個人最佳數值目標與用藥劑量需由主治醫師與糖尿病衛教師共同評估制定。</p>
+    </section>
+
+    <!-- 8. 日常照護與返家清單 -->
+    <section id="care" class="section container">
+      <div class="care-layout">
+        <div class="care-accordion">
+          <h2>日常必做的三項照護</h2>
+          <details open>
+            <summary><span>01</span> 每日洗澡後的「雙足健檢」 <i aria-hidden="true">＋</i></summary>
+            <div>
+              <p>糖尿病周邊神經感覺較遲鈍。每天洗完澡後，拿鏡子照腳底，仔細檢查是否有紅腫、破皮、水泡、雞眼或小傷口。若有傷口千萬不要自行貼雞眼膠布或強力藥膏，應盡早就醫處置。</p>
+              <p>平日務必穿著棉質透氣襪子與包鞋，絕不要赤腳踩在地板或沙灘上。</p>
+            </div>
+          </details>
+
+          <details>
+            <summary><span>02</span> 安全防護的「規律運動」 <i aria-hidden="true">＋</i></summary>
+            <div>
+              <p>每週累積至少 150 分鐘中等強度運動（如快走、太極拳、固定式單車）。</p>
+              <p>從體力可負荷的活動開始。使用胰島素或可能引起低血糖的藥物者，先與醫療團隊討論運動前後監測及補糖安排，不自行調藥。身體不適或血糖過低時先停止活動。</p>
+            </div>
+          </details>
+
+          <details>
+            <summary><span>03</span> 預防併發症的「定期檢查」 <i aria-hidden="true">＋</i></summary>
+            <div>
+              <p>與醫療團隊安排：<strong>眼底視網膜檢查</strong>、<strong>尿液微量白蛋白檢查</strong>（顧腎臟）與<strong>足部神經感覺檢測</strong>。</p>
+              <p>糖化血色素、血壓、血脂與腎功能等追蹤頻率依病況安排；不要等出現不適才回診。</p>
+            </div>
+          </details>
+        </div>
+
+        <aside class="checklist">
+          <span class="tag">居家生活確認</span>
+          <h3>我的穩糖自主清單</h3>
+          <p>把重要習慣落實到生活裡，健康好安心：</p>
+          <label><input type="checkbox"> 我清楚我的口服藥／胰島素用量與時間</label>
+          <label><input type="checkbox"> 我隨身包包內備妥了 依標示含 15 公克葡萄糖的急救用品</label>
+          <label><input type="checkbox"> 我每天洗澡後都會檢查一次雙腳腳底</label>
+          <label><input type="checkbox"> 我知道飲食份量要與營養師討論</label>
+          <label><input type="checkbox"> 我已和醫療團隊確認眼底與腎臟檢查安排</label>
+          <div id="checklist-status" role="status">已確認 0 / 5 項</div>
+          <button id="print-button" class="text-link" type="button">列印這份穩糖衛教清單 ↗</button>
+          <small>勾選資料僅存於當次畫面，重新整理即復原，保護您的隱私。</small>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 9. 情境練習小測驗 -->
+    <section id="quiz" class="section container quiz-section">
+      <div class="quiz-intro">
+        <p class="eyebrow">05 / PRACTICE MAKES PERFECT</p>
+        <h2>生活小情境：<br>換成是你，會怎麼做？</h2>
+        <p>用三個虛構生活情境，輕鬆檢驗自己與家人的穩糖觀念！</p>
+        <p class="small-note">這是衛教觀念練習，非診斷工具；若有急性不適請立即就醫。</p>
+      </div>
+
+      <div class="quiz-card">
+        <div class="quiz-top">
+          <span class="tag">觀念小練習</span>
+          <span id="quiz-progress">第 1 題，共 3 題</span>
+        </div>
+        <div class="quiz-track"><span id="quiz-progress-bar"></span></div>
+        <h3 id="quiz-question" tabindex="-1">啟用 JavaScript 即可開始練習；主要衛教內容不受影響。</h3>
+        <div id="quiz-options" class="quiz-options"></div>
+        <div id="quiz-feedback" class="quiz-feedback" role="status" hidden></div>
+        <button id="quiz-next" class="button primary" type="button" hidden>下一題 →</button>
+        <div id="quiz-result" hidden>
+          <div class="result-symbol" aria-hidden="true">✳</div>
+          <h3 id="quiz-score">完成練習！</h3>
+          <p>正確的知識能驅散焦慮，帶給你與家人最踏實的守護力量。</p>
+          <button id="quiz-restart" class="button primary">再做一次練習 ↺</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. 權威資料來源與醫療免責 -->
+    <section id="references" class="references container">
+      <details open>
+        <summary>資料來源、查閱日期與使用提醒 <span>＋</span></summary>
+        <div>
+          <p>
+            <strong>免責聲明</strong>：本網站內容僅作為一般民眾與家屬健康教育資訊使用，不可取代專業醫師、營養師或糖尿病衛教師之面對面診斷、處方或個別化醫療建議。若您有急性症狀（如嚴重低血糖昏迷、酮酸中毒、持續嘔吐），請<strong>立即撥打 119</strong> 或前往急診室就醫。
+          </p>
+          <p><strong>資料查閱日期</strong>：2026 年 10 月 17 日。</p>
+          <ol>
+<li>常見症狀：<a href="https://www.niddk.nih.gov/health-information/diabetes/overview/symptoms-causes">NIDDK：Symptoms &amp; Causes of Diabetes</a></li>
+<li>低血糖：<a href="https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/low-blood-glucose-hypoglycemia">NIDDK：Low Blood Glucose</a>（口服補糖、複測、升糖素）</li>
+<li>生活照護：<a href="https://www.hpa.gov.tw/Pages/Detail.aspx?nodeid=4705&amp;pid=17623">國健署：控糖五招，降低糖尿病併發症保平安！</a>（飲食、用藥及檢查）</li>
+<li>足部：<a href="https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/foot-problems">NIDDK：Diabetes &amp; Foot Problems</a></li>
+<li>疾病類型：<a href="https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes">NIDDK：What Is Diabetes?</a></li>
+<li>高血糖急症：<a href="https://www.cdc.gov/diabetes/about/diabetic-ketoacidosis.html">CDC：Diabetic Ketoacidosis</a>（美國求救電話已依台灣情境改為 119）</li>
+<li>血糖監測與用藥：<a href="https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes">NIDDK：Managing Diabetes</a></li></ol><p><strong>醫護臨床審閱：尚未完成。</strong>查閱日期不代表臨床審閱日期。</p>
+          <p class="small-note">本站無第三方追蹤代碼，不收集、傳送或儲存個人健康資料。正式提供臨床衛教前，建議由使用單位醫護或糖尿病衛教人員進行審閱。</p>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <!-- 11. 頁尾 -->
+  <footer class="site-footer container">
+    <div class="footer-content">
+      <span class="brand-mark" aria-hidden="true">✳</span>
+      <p>穩糖安心指南 · 陪伴你與家人走過健康每一步。<br>© 2026 糖尿病衛教互動指南專案 · 台灣緊急救護專線請撥 119</p>
+    </div>
+    <a href="#top" class="back-top" aria-label="回到頁首">↑</a>
+  </footer>
+</body>
+</html>
+
