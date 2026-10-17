@@ -12,4 +12,8 @@
 
 - [x] 發布前檔案與敏感資訊檢查。
 - [x] 建立獨立 Git 專案並提交。
-- [ ] 推送 GitHub、啟用 Pages，確認公開網址與靜態資源。
+- [x] 推送 GitHub、啟用 Pages，確認公開網址與靜態資源。
+
+儲存庫：https://github.com/jie-ling-2025/Diabetes-Health-Education
+公開網址：https://jie-ling-2025.github.io/Diabetes-Health-Education/
+首次發布工作流程 39047423449 成功；首頁及 styles.css、nojs.css、app.js 均回應 HTTP 200，公開頁面可在瀏覽器開啟。
